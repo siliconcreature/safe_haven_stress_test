@@ -422,7 +422,7 @@ with tab2:
         
         # Median Equity Heatmap
         st.subheader("Median Equity Heatmap")
-        if not hedged_df.empty:
+        if not hedged_df.empty and 'Median Value' in hedged_df.columns:
             # Pivot data for Median Value (Equity)
             median_metric = "Median Value"
             pivot_median = hedged_df.pivot(index='Strike', columns='Put Qty', values=median_metric)
