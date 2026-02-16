@@ -34,7 +34,7 @@ fit_df = df[df.index >= pd.to_datetime(start_date)]
 
 # --- Sidebar Config ---
 st.sidebar.subheader("Monte Carlo Settings")
-n_paths = st.sidebar.number_input("Number of Paths", value=10000, step=100)
+n_paths = st.sidebar.number_input("Number of Paths", value=100, step=100)
 n_days = st.sidebar.number_input("Simulation Days", value=90) # Sim Duration
 target_option_days = st.sidebar.number_input("Target Option Expiry (Days)", value=120) # Option Maturity
 
@@ -420,11 +420,11 @@ with tab2:
             )
             st.plotly_chart(fig_heatmap, use_container_width=True)
         
-        # Median Equity Heatmap
-        st.subheader("Median Equity Heatmap")
-        if not hedged_df.empty and 'Median Value' in hedged_df.columns:
-            # Pivot data for Median Value (Equity)
-            median_metric = "Median Value"
+        # Median Value Heatmap
+        st.subheader("Median Value Heatmap")
+        if not hedged_df.empty and 'Median P&L' in hedged_df.columns:
+            # Pivot data for Median Value
+            median_metric = "Median P&L"
             pivot_median = hedged_df.pivot(index='Strike', columns='Put Qty', values=median_metric)
             
             fig_median = go.Figure(data=go.Heatmap(
@@ -432,17 +432,17 @@ with tab2:
                 x=pivot_median.columns,  # Put Qty
                 y=pivot_median.index,    # Strike
                 colorscale='RdYlGn',
-                colorbar=dict(title=median_metric),
+                colorbar=dict(title="Median Value"),
                 hoverongaps=False,
-                hovertemplate='Put Qty: %{x}<br>Strike: $%{y}<br>Median Equity: $%{z:,.0f}<extra></extra>'
+                hovertemplate='Put Qty: %{x}<br>Strike: $%{y}<br>Median Value: $%{z:,.0f}<extra></extra>'
             ))
             
             fig_median.update_layout(
-                title=f"Hedge Landscape: {median_metric}",
+                title="Hedge Landscape: Median Value",
                 xaxis_title='Put Quantity (Contracts)',
                 yaxis_title='Strike Price ($)',
                 width=1000,
                 height=600,
             )
             st.plotly_chart(fig_median, use_container_width=True)
-
+ 
