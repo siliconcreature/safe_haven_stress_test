@@ -1,0 +1,28 @@
+Testing Monte Carlo Simulation Logic...
+Generated 1000 paths over 30 days.
+Start Price: 100.0
+Final Mean Price: 100.00
+Stock Qty: 10000
+Total Initial Equity (Cash): 1700000
+Effective Cash (after purchase): 685000.00
+
+Running Simulation...
+Calculating Stats...
+
+Simulation Results:
+Mean P&L: 10687.20
+Median P&L: -31005.21
+5% VaR (P&L): -117357.86
+1% VaR (P&L): -117357.86
+Win Rate: 0.43
+Avg Max Drawdown: -0.08
+Worst Max Drawdown: -0.21
+Margin Call %: 0.00
+
+Worst Case Path (Idx 805):
+Final Stock Price: 48.89
+Final Portfolio Entry: 1585000.00
+Margin Requirement (30%): 146660.04
+Margin Call Triggered manually? False
+
+WARNING: No Margin Calls detected (might be expected depending on params).
